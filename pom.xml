@@ -33,16 +33,14 @@
 
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
+		<finalName>mypersonalweb</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.7.0</version>
 				<configuration>
-					<finalName>mypersonalweb</finalName>
-  				        <appendAssemblyId>false</appendAssemblyId>
 					<source>1.8</source>
 					<target>1.8</target>
-					<warName>mypersonalweb</warName>
 				</configuration>
 			</plugin>
 			<plugin>
