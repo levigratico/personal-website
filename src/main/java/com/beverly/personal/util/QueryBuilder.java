@@ -11,22 +11,6 @@ import com.beverly.personal.model.UserQueryPreparation;
 
 public class QueryBuilder {
 	
-	public static UserQueryPreparation build(String sqlQuery, Map<String, Object> where, String separator) {
-		UserQueryPreparation userQueryPreparation = new UserQueryPreparation();
-		int counter = 1;
-		for(Iterator<Entry<String, Object>> map = where.entrySet().iterator(); map.hasNext();) {
-			Map.Entry<String, Object> tempMap = map.next();
-			sqlQuery += String.format("%s = ?", tempMap.getKey());
-			if(counter != where.size()) {
-				sqlQuery += separator + " ";
-			}
-			userQueryPreparation.setData(tempMap.getValue());
-			counter++;
-		}
-		userQueryPreparation.setQuery(sqlQuery);
-		return userQueryPreparation;
-	}
-	
 	public static PreparedStatement setPreparedQuery(PreparedStatement sqlQuery, List<Object> data) throws SQLException {
 		int counter = 1;
 		for(Iterator<Object> datum = data.iterator(); datum.hasNext();) {

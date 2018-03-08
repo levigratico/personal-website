@@ -1,9 +1,10 @@
 package com.beverly.personal.dao;
 
 import java.sql.SQLException;
-import java.util.Map;
+import java.util.List;
 
 import com.beverly.personal.interactors.interfaces.Retrieve;
+import com.beverly.personal.model.QueryObject;
 import com.beverly.personal.util.DBConnect;
 
 public class DatabaseOperationDao {
@@ -18,7 +19,7 @@ public class DatabaseOperationDao {
 		return null;
 	}
 	
-	public static Object findByWhere(Retrieve retrieve, Map<String, Object> where) {
+	public static Object findByWhere(Retrieve retrieve, List<QueryObject> where) {
 		DBConnect db = new DBConnect();
 		try {
 			return retrieve.findByWhere(db, where);

@@ -1,29 +1,36 @@
 package com.beverly.personal.test.dao;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.beverly.personal.common.BoleanOperators;
+import com.beverly.personal.common.Operations;
 import com.beverly.personal.dao.DatabaseOperationDao;
 import com.beverly.personal.interactors.implementations.IntroductionImpl;
+import com.beverly.personal.interactors.implementations.ProfileImpl;
 import com.beverly.personal.interactors.implementations.UserImpl;
 import com.beverly.personal.interactors.interfaces.Retrieve;
 import com.beverly.personal.model.IntroductionModel;
 import com.beverly.personal.model.Paragraph;
+import com.beverly.personal.model.ProfileModel;
+import com.beverly.personal.model.QueryObject;
 import com.beverly.personal.model.UserModel;
 
 public class DatabaseOperationDaoTest {
 	
    private Retrieve introductionImpl;	
    private Retrieve userImpl;
+   private Retrieve profileImpl;
 	
   @Before
   public void setup() {
 	  introductionImpl = new IntroductionImpl();
 	  userImpl = new UserImpl();
+	  profileImpl = new ProfileImpl();
   }
 	
   @Test
@@ -40,10 +47,12 @@ public class DatabaseOperationDaoTest {
   
   @Test 
   public void findByWhereUserImplTest() {
-	  Map<String, Object> where = new HashMap<>();
-	  where.put("username", "beverly");
-	  where.put("password", "BEVlev12");
-	  UserModel data = (UserModel)DatabaseOperationDao.findByWhere(userImpl, where);
+	  List<QueryObject> obj = new ArrayList<>();
+		QueryObject usernameObj = setData("beverly", "username");
+		QueryObject passwordObj = setData("BEVlev13", "password");
+		obj.add(usernameObj);
+		obj.add(passwordObj);
+	  UserModel data = (UserModel)DatabaseOperationDao.findByWhere(userImpl, obj);
 	  if(data != null) {
 		  System.out.println(String.format("Username: %s", data.getUsername()));
 		  System.out.println(String.format("Password: %s", data.getPassword()));
@@ -51,5 +60,21 @@ public class DatabaseOperationDaoTest {
 		  System.out.println("object is null");
 	  }
   }
+  
+  
+  @Test
+  public void findAllProfileImpl() {
+	  ProfileModel temp = (ProfileModel) DatabaseOperationDao.findAll(profileImpl);
+	  System.out.println(temp.getContacts().get(0).getContent());
+  }
+  
+  private QueryObject setData(String datum, String column) {
+		QueryObject data = new QueryObject();
+		data.setBolOpt(BoleanOperators.AND);
+		data.setColumn(column);
+		data.setOpt(Operations.EQ);
+		data.setDatum(datum);
+		return data;
+	}
 
 }

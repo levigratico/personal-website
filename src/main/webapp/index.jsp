@@ -1,5 +1,10 @@
+<%@page import="com.beverly.personal.model.IntroductionModel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="com.beverly.personal.model.Paragraph" %>
+<%@ page import="com.beverly.personal.model.IntroductionModel" %>
 
 <!DOCTYPE html>
 <html>
@@ -19,6 +24,7 @@
 </head>
 <body>
 	<div>
+		
 		<jsp:include page="/common/navigation.jsp"></jsp:include>
 		<div class="row" style="margin-right: 0;">
 			<div class="col-lg-2 col-lg-offset-1">
@@ -33,27 +39,27 @@
 			</div>
 			<div class="col-lg-7">
 				<h1 style="text-align: center">
-					<b>DATABASE &amp; WEB DESIGNER</b>
+					<b id="intro-${model.title.id}"> ${model.title.content} </b>
+					<i class="btn btn-default glyphicon glyphicon-pencil edit" data-id="${model.title.id}" style="font-size:20px;"></i>
 				</h1>
 				<div class="paragraph-custom">
-					<p>Hello there! I am Beverly and I am a database designer at
-						the same time a web designer. I believe that as a detabase and web
-						designer, I act as an analyst that every data should be proper and
-						fitted to the module. It is important to know the process of your
-						project and the design should be fit to the type of your project.</p>
-					<p>I think it is very important to make a website compatible
-						with all modern devices, like phones and tabltes</p>
-
-					<p>Feel free to check out my work or view my resume. I am
-						currently available for hire, so if it saound fit for your next
-						project, dont hesitate to contact me! Im a social person. Or at
-						least that's what I keep telling myself. Either way, you can find
-						me to my accounts below.</p>
-
+						
+					<% for(Iterator<Paragraph> paragraph = ((IntroductionModel)request.getAttribute("model")).getParagraph().iterator(); paragraph.hasNext();) { 
+						Paragraph par = paragraph.next();
+					%>
+						<div class="row">
+							<div class="col-lg-11" id="intro-<%= par.getId() %>"><%= par.getContent() %></div>
+							<div class="col-lg-1">
+								<i class="btn btn-default glyphicon glyphicon-pencil edit" data-id="<%= par.getId() %>" style="font-size:20px; text-indent: 0px;"></i>
+							</div>
+						</div>
+						<br>
+					<% } %>
 					<h3 style="display: inline-block">
 						<b>I can be a</b>
 					</h3>
-					<span>web designer, database designer and technical support</span>
+					<span id="intro-${model.skills.id}">${model.skills.content}</span>
+					<i class="btn btn-default glyphicon glyphicon-pencil edit" data-id="${model.skills.id}" style="font-size:20px; text-indent: 0px;"></i>
 				</div>
 			</div>
 		</div>
@@ -61,5 +67,31 @@
 	</div>
 	<script type="text/javascript" src="<%= request.getAttribute("base_url") %>/resources/lib/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="<%= request.getAttribute("base_url") %>/resources/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(document).on("click", ".edit", function(){
+			 var id = $(this).data("id");
+			 	var element = $("#intro-" + id);
+			 	var text = element.text();
+			 	element.html('<textarea style="text-align: center" rows="4" cols="40">'+ text +'</textarea>');
+			 	$(this).addClass("glyphicon-save");
+			 	$(this).addClass("save");
+			 	$(this).removeClass("glyphicon-pencil");
+			 	$(this).removeClass("edit");
+			});
+			
+			$(document).on("click", ".save", function(){
+				var id = $(this).data("id");
+				var element = $("#intro-" + id + " textarea");
+			 	var text = element.text();
+			 	$("#intro-" + id).html(text);
+			 	$(this).addClass("glyphicon-pencil");
+			 	$(this).addClass("edit");
+			 	$(this).removeClass("glyphicon-save");
+			 	$(this).removeClass("save");
+			});
+			
+		});
+	</script>
 </body>
 </html>
