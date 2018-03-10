@@ -30,7 +30,7 @@
 				</li>
 				<li
 					class="<%=((int) request.getAttribute("active")) == 3 ? "active-custom" : ""%>">
-					<a href="<%=request.getAttribute("base_url")%>/personal/photos">PHOTOS</a>
+					<a href="<%=request.getAttribute("base_url")%>/personal/photos">SERVICES</a>
 				</li>
 				<% if((boolean) session.getAttribute("isLogin")) {%>
 				<li

@@ -40,7 +40,9 @@
 			<div class="col-lg-7">
 				<h1 style="text-align: center">
 					<b id="intro-${model.title.id}"> ${model.title.content} </b>
+					 <% if((boolean) session.getAttribute("isLogin")) { %>
 					<i class="btn btn-default glyphicon glyphicon-pencil edit" data-id="${model.title.id}" style="font-size:20px;"></i>
+					<% } %>
 				</h1>
 				<div class="paragraph-custom">
 						
@@ -50,7 +52,9 @@
 						<div class="row">
 							<div class="col-lg-11" id="intro-<%= par.getId() %>"><%= par.getContent() %></div>
 							<div class="col-lg-1">
+							   <% if((boolean) session.getAttribute("isLogin")) { %>
 								<i class="btn btn-default glyphicon glyphicon-pencil edit" data-id="<%= par.getId() %>" style="font-size:20px; text-indent: 0px;"></i>
+								<% } %>
 							</div>
 						</div>
 						<br>
@@ -59,7 +63,9 @@
 						<b>I can be a</b>
 					</h3>
 					<span id="intro-${model.skills.id}">${model.skills.content}</span>
+					 <% if((boolean) session.getAttribute("isLogin")) { %>
 					<i class="btn btn-default glyphicon glyphicon-pencil edit" data-id="${model.skills.id}" style="font-size:20px; text-indent: 0px;"></i>
+					<% } %>
 				</div>
 			</div>
 		</div>

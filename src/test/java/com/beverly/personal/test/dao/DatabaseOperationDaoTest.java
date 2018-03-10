@@ -8,9 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.beverly.personal.common.BoleanOperators;
+import com.beverly.personal.common.CommonListModel;
 import com.beverly.personal.common.Operations;
 import com.beverly.personal.dao.DatabaseOperationDao;
 import com.beverly.personal.interactors.implementations.IntroductionImpl;
+import com.beverly.personal.interactors.implementations.PhotosImpl;
 import com.beverly.personal.interactors.implementations.ProfileImpl;
 import com.beverly.personal.interactors.implementations.UserImpl;
 import com.beverly.personal.interactors.interfaces.Retrieve;
@@ -18,6 +20,7 @@ import com.beverly.personal.model.IntroductionModel;
 import com.beverly.personal.model.Paragraph;
 import com.beverly.personal.model.ProfileModel;
 import com.beverly.personal.model.QueryObject;
+import com.beverly.personal.model.ServicesModel;
 import com.beverly.personal.model.UserModel;
 
 public class DatabaseOperationDaoTest {
@@ -25,12 +28,14 @@ public class DatabaseOperationDaoTest {
    private Retrieve introductionImpl;	
    private Retrieve userImpl;
    private Retrieve profileImpl;
+   private Retrieve photosImpl;
 	
   @Before
   public void setup() {
 	  introductionImpl = new IntroductionImpl();
 	  userImpl = new UserImpl();
 	  profileImpl = new ProfileImpl();
+	  photosImpl = new PhotosImpl();
   }
 	
   @Test
@@ -66,6 +71,17 @@ public class DatabaseOperationDaoTest {
   public void findAllProfileImpl() {
 	  ProfileModel temp = (ProfileModel) DatabaseOperationDao.findAll(profileImpl);
 	  System.out.println(temp.getContacts().get(0).getContent());
+  }
+  
+  @Test 
+  public void findAllPhotosImpl() {
+	  CommonListModel<ServicesModel> data = (CommonListModel<ServicesModel>) DatabaseOperationDao.findAll(photosImpl);
+	  for(Iterator<ServicesModel> it = data.getListOfModel().iterator(); it.hasNext();) {
+		  ServicesModel temp = it.next();
+		  System.out.println(String.format("title: %s", temp.getTitle()));
+		  System.out.println(String.format("description: %s", temp.getDescription()));
+		  System.out.println(String.format("picture: %s", temp.getPicture()));
+	  }
   }
   
   private QueryObject setData(String datum, String column) {
