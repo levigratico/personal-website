@@ -1,0 +1,3 @@
+com\beverly\personal\test\util\QueryBuilderTest.class
+com\beverly\personal\test\dao\DatabaseOperationDaoTest.class
+com\beverly\personal\test\util\SQLBuilderTest.class

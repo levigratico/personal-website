@@ -9,7 +9,9 @@ public enum ConstString {
 	BASEURL("/mypersonalweb"),
 	TYPE_TITLE("title"),
 	TYPE_PAR("paragraph"),
-	TYPE_SKILLS("skills");
+	TYPE_SKILLS("skills"),
+	IMAGE_PATH("http://l3dedvvy-site.btempurl.com/uploading/images/");
+	
 	
 	private final String datum;
 	

@@ -1,6 +1,11 @@
 package com.beverly.personal.test.util;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -55,6 +60,20 @@ public class SQLBuilderTest {
 			Object tempData = temp.next();
 			System.out.println(tempData);
 		}
+	}
+	
+	@Test 
+	public void testUpload() {
+		System.out.println(new File(String.format("src/main/webapp/resources/images/%s", "levi.jpg")).getAbsolutePath());
+	}
+	
+	
+	@Test 
+	public void testTime() {
+		 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+		    Date date = new Date();  
+		    System.out.println(formatter.format(date));  
+		
 	}
 	
 }

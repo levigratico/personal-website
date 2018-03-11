@@ -102,7 +102,7 @@ public class SQLBuilder {
 
 		// process where clause
 		this.query += (processWhere() != null) ? processWhere() : "";
-
+		
 		return this.query.trim();
 	}
 

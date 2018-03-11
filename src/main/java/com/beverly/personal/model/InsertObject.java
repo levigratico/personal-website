@@ -2,9 +2,9 @@ package com.beverly.personal.model;
 
 public class InsertObject {
 	private String column;
-	private String data;
+	private Object data;
 	
-	public InsertObject(String column, String data) {
+	public InsertObject(String column, Object data) {
 		this.column = column;
 		this.data = data;
 	}
@@ -13,7 +13,7 @@ public class InsertObject {
 		return column;
 	}
 
-	public String getData() {
+	public Object getData() {
 		return data;
 	}	
 	

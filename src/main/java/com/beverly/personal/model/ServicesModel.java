@@ -5,6 +5,13 @@ public class ServicesModel {
 	private String title;
 	private String description;
 	private String picture;
+	private Double price;
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 	public int getId() {
 		return id;
 	}

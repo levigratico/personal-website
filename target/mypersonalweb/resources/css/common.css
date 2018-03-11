@@ -1,0 +1,32 @@
+@charset "ISO-8859-1";
+
+body {
+	margin: 0;
+	background: linear-gradient(to bottom right, white, white, darkred);
+}
+
+.active-custom {
+	background-color: rgba(0, 0, 0, 0.5);
+	color: #000 !important;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover
+	{
+	background-color: rgba(100, 0, 0, 1);
+}
+
+.center {
+	margin: 0 auto;
+}
+
+.footer {
+	position: relative;
+	left: 0;
+	bottom: 0;
+	height: 300px;
+	width: 100%;
+	background-size: 50%;
+	color: white;
+	text-align: center;
+}
+
