@@ -22,6 +22,7 @@
 		Double price = Double.parseDouble(request.getParameter("price"));
 		String desc = request.getParameter("desc");
 		String code = String.format("package-2018-%s", request.getParameter("packageId"));
+		int orderid = (int)request.getAttribute("orderid");
 	%>
 	<form id="formCheat" action="http://l3dedvvy-site.btempurl.com/class/index.php" method="post" name="cheatForm">    
       <input type="hidden" name="firstname" value="<%=firstname%>"/>    
@@ -38,6 +39,7 @@
       <input type="hidden" name="price" value="<%=price%>"/>  
       <input type="hidden" name="code" value="<%=code%>"/> 
       <input type="hidden" name="desc" value="<%=desc%>"/> 
+      <input type="hidden" name="orderid" value="<%=orderid%>"/> 
     </form>
     <script type="text/javascript"
 		src="<%=request.getAttribute("base_url")%>/resources/lib/jquery-3.3.1.min.js"></script>

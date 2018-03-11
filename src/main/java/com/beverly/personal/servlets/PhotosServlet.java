@@ -42,6 +42,7 @@ public class PhotosServlet extends BaseServlet {
 	protected boolean customDoPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//inserting here
 		if(insertData(prepareObject(req))) {
+			req.setAttribute("orderid", DatabaseOperationDao.selectLastIdInserted("orders_tbl"));
 			setView("/pages/redirect.jsp");
 			return false;
 		}

@@ -49,6 +49,7 @@ public class CollectionsServlet extends BaseServlet {
 	protected boolean customDoPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		if(insertData(prepareObject(req))) {
+			
 		}
 		 resp.sendRedirect(String.format("%s/pages/services/collections?id=%s", ConstString.BASEURL.getString(), req.getParameter("serviceid")));
 		 return true;
